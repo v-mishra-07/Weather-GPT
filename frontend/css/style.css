@@ -1,0 +1,1881 @@
+/* ============================================================
+   WeatherGPT – style.css
+   Mobile-first, max 480px centered on desktop
+   ============================================================ */
+
+/* ── Reset & Base ────────────────────────────────────────── */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: #F0F4FF;
+    color: #1A1A2E;
+    min-height: 100vh;
+}
+
+/* ── App Container ───────────────────────────────────────── */
+.app-container {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── Screens ─────────────────────────────────────────────── */
+.screen {
+    display: none;
+    flex-direction: column;
+    min-height: calc(100vh - 64px);
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* ── Top Bar ─────────────────────────────────────────────── */
+.top-bar {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.top-bar h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A1A2E;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #1A1A2E;
+    padding: 4px;
+    line-height: 1;
+}
+
+/* ── Bottom Navigation ───────────────────────────────────── */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    background: white;
+    border-top: 1px solid #E8ECF0;
+    display: flex;
+    padding: 8px 0 20px;
+    z-index: 100;
+}
+
+.nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+}
+
+.nav-item span {
+    font-size: 10px;
+    color: #636E72;
+    transition: color 0.15s;
+}
+
+.nav-item.active span,
+.nav-item.active .nav-icon {
+    color: #2E86DE;
+}
+
+.nav-icon {
+    font-size: 22px;
+    line-height: 1;
+    transition: color 0.15s;
+}
+
+/* ── Cards ───────────────────────────────────────────────── */
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 16px;
+}
+
+/* ── Weather Hero Card (Home / Weather) ──────────────────── */
+.weather-hero {
+    background: linear-gradient(135deg, #2E86DE, #74B9FF);
+    border-radius: 20px;
+    padding: 28px 24px;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.hero-temp {
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.hero-condition {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-top: 4px;
+}
+
+.hero-location {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-top: 8px;
+}
+
+/* ── Weather Details Grid ────────────────────────────────── */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.detail-item {
+    background: #F8FBFF;
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detail-label {
+    font-size: 12px;
+    color: #636E72;
+}
+
+.detail-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1A1A2E;
+}
+
+/* ── Forecast List ───────────────────────────────────────── */
+.forecast-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.forecast-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background: #F8FBFF;
+    border-radius: 12px;
+}
+
+.forecast-date {
+    flex: 1;
+    font-size: 14px;
+    color: #636E72;
+}
+
+.forecast-condition {
+    flex: 2;
+    font-size: 14px;
+    color: #1A1A2E;
+}
+
+.forecast-temp {
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ── Chat Screen ─────────────────────────────────────────── */
+.chat-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 80px;
+}
+
+.chat-bubble {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.chat-bubble.user {
+    background: #2E86DE;
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+.chat-bubble.assistant {
+    background: white;
+    color: #1A1A2E;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.chat-input-bar {
+    position: fixed;
+    bottom: 64px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    background: white;
+    border-top: 1px solid #E8ECF0;
+    padding: 12px 16px;
+    display: flex;
+    gap: 10px;
+    z-index: 99;
+}
+
+.chat-input {
+    flex: 1;
+    border: 1.5px solid #E0E8F0;
+    border-radius: 24px;
+    padding: 10px 16px;
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+    background: white;
+    color: #1A1A2E;
+}
+
+.chat-input:focus {
+    border-color: #2E86DE;
+}
+
+.chat-send-btn {
+    background: #2E86DE;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s;
+}
+
+.chat-send-btn:hover {
+    background: #1a6fc4;
+}
+
+/* ── Alerts ──────────────────────────────────────────────── */
+.alert-card {
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.alert-card.high {
+    background: #FFF5F5;
+    border-left: 4px solid #D63031;
+}
+
+.alert-card.medium {
+    background: #FFFBF0;
+    border-left: 4px solid #FDCB6E;
+}
+
+.alert-card.low {
+    background: #F0FFF4;
+    border-left: 4px solid #00B894;
+}
+
+.alert-card.none {
+    background: #F8FBFF;
+    border-left: 4px solid #74B9FF;
+}
+
+.alert-type {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-bottom: 6px;
+    color: #1A1A2E;
+}
+
+.alert-message {
+    font-size: 14px;
+    color: #636E72;
+    line-height: 1.5;
+}
+
+/* ── Loading / Error / Empty States ─────────────────────── */
+.loading-state,
+.error-state,
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    gap: 12px;
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #E0E8F0;
+    border-top-color: #2E86DE;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+.retry-btn {
+    background: #2E86DE;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: inherit;
+    transition: background 0.15s;
+}
+
+.retry-btn:hover {
+    background: #1a6fc4;
+}
+
+/* ── Mode / Language Selector (Chat) ─────────────────────── */
+.chat-options {
+    display: flex;
+    gap: 8px;
+    padding: 8px 16px;
+    overflow-x: auto;
+}
+
+.option-chip {
+    border: 1.5px solid #E0E8F0;
+    background: white;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+    color: #636E72;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.option-chip.active {
+    border-color: #2E86DE;
+    background: #EBF5FF;
+    color: #2E86DE;
+}
+
+/* ── Scrollable Content Area ─────────────────────────────── */
+.screen-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 16px 80px;
+}
+
+/* ── Section Headers ─────────────────────────────────────── */
+.section-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #1A1A2E;
+}
+
+/* ── Splash Screen (Page 1) ──────────────────────────────── */
+.splash-screen {
+    min-height: 100vh;
+    height: 100vh;
+    padding: 44px 24px 32px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(170deg, #07152B 0%, #0D274D 30%, #153E75 60%, #1B5699 85%, #2570BE 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+    box-sizing: border-box;
+    z-index: 50;
+}
+
+.splash-screen.active {
+    display: flex;
+}
+
+.splash-screen.fade-out {
+    opacity: 0;
+    transform: scale(1.02);
+    pointer-events: none;
+}
+
+/* Ambient glow accents */
+.splash-ambient-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+    opacity: 0.35;
+}
+
+.glow-1 {
+    width: 220px;
+    height: 220px;
+    top: -40px;
+    right: -40px;
+    background: radial-gradient(circle, #FFA114 0%, transparent 70%);
+}
+
+.glow-2 {
+    width: 260px;
+    height: 260px;
+    bottom: 80px;
+    left: -60px;
+    background: radial-gradient(circle, #0080FF 0%, transparent 70%);
+}
+
+/* Top Badge */
+.splash-top-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    z-index: 1;
+}
+
+.badge-dot {
+    width: 7px;
+    height: 7px;
+    background: #00E676;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00E676;
+    display: inline-block;
+}
+
+/* Center Content */
+.splash-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+    margin: auto 0;
+}
+
+.splash-illustration-wrap {
+    width: 170px;
+    height: 150px;
+    margin-bottom: 24px;
+    animation: splashFloat 3.5s ease-in-out infinite;
+}
+
+.splash-illustration {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 12px 28px rgba(0, 30, 80, 0.5));
+}
+
+@keyframes splashFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.splash-brand-title {
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+.brand-weather {
+    color: #FFFFFF;
+}
+
+.brand-gpt {
+    color: #FF4757;
+    margin-left: 2px;
+}
+
+.splash-tagline {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.2px;
+    margin-bottom: 6px;
+}
+
+.splash-motto {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+    letter-spacing: 0.3px;
+}
+
+/* Bottom elements */
+.splash-bottom {
+    width: 100%;
+    max-width: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    z-index: 1;
+}
+
+.splash-loader-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.splash-loader-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #38B6FF, #FF4757);
+    border-radius: 4px;
+    animation: splashFill 2.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes splashFill {
+    0% { width: 0%; }
+    40% { width: 45%; }
+    80% { width: 85%; }
+    100% { width: 100%; }
+}
+
+.splash-team {
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.splash-team strong {
+    color: #FFFFFF;
+    letter-spacing: 2px;
+}
+
+.splash-hint {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.5px;
+}
+
+/* ── Auth Screen (Page 2 — Create Account) ────────────────── */
+.auth-screen {
+    min-height: 100vh;
+    background: #FFFFFF;
+    display: none;
+    flex-direction: column;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.auth-screen.active {
+    display: flex;
+}
+
+.auth-top-bar {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #F0F4F8;
+    background: #FFFFFF;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.auth-brand-mini {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.auth-skip-btn {
+    background: none;
+    border: none;
+    color: #2E86DE;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 4px 8px;
+}
+
+.auth-content {
+    flex: 1;
+    padding: 24px 20px 40px;
+    max-width: 440px;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.auth-header {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.auth-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1A1A2E;
+    margin-bottom: 6px;
+}
+
+.auth-header p {
+    font-size: 13px;
+    color: #636E72;
+    line-height: 1.5;
+}
+
+.auth-input-group {
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.auth-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2D3436;
+    margin-bottom: 6px;
+}
+
+.auth-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 12px 14px 12px 38px;
+    border: 1.5px solid #E0E8F0;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #1A1A2E;
+    background: #F8FBFF;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.auth-input:focus {
+    border-color: #2E86DE;
+    background: #FFFFFF;
+}
+
+.auth-input-icon {
+    position: absolute;
+    left: 12px;
+    font-size: 15px;
+    color: #636E72;
+    pointer-events: none;
+}
+
+.auth-toggle-pwd {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 2px;
+    line-height: 1;
+}
+
+/* Persona Chips */
+.persona-selector {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.persona-chip {
+    padding: 10px 8px;
+    border: 1.5px solid #E0E8F0;
+    border-radius: 12px;
+    background: #F8FBFF;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #2D3436;
+    transition: all 0.15s ease;
+    text-align: center;
+}
+
+.persona-chip:hover {
+    border-color: #74B9FF;
+}
+
+.persona-chip.selected {
+    border-color: #2E86DE;
+    background: #EBF5FF;
+    color: #2E86DE;
+}
+
+.persona-icon {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.persona-sub {
+    font-size: 10px;
+    font-weight: 400;
+    color: #636E72;
+}
+
+.persona-chip.selected .persona-sub {
+    color: #2E86DE;
+}
+
+/* Terms checkbox */
+.auth-terms-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.auth-checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: #636E72;
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.auth-checkbox-label input {
+    margin-top: 2px;
+    cursor: pointer;
+}
+
+.auth-checkbox-label a {
+    color: #2E86DE;
+    text-decoration: none;
+}
+
+/* Submit and Action Buttons */
+.auth-submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #1B64DA 0%, #2E86DE 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(46, 134, 222, 0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.auth-submit-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(46, 134, 222, 0.45);
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0 16px;
+    color: #A4B0BE;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #E8ECF0;
+}
+
+.auth-divider span {
+    padding: 0 12px;
+}
+
+.auth-guest-btn {
+    width: 100%;
+    padding: 12px;
+    background: #F0F4F8;
+    color: #2D3436;
+    border: 1px solid #DFE6E9;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.auth-guest-btn:hover {
+    background: #E4EBF2;
+}
+
+.auth-footer-prompt {
+    margin-top: 24px;
+    font-size: 13px;
+    color: #636E72;
+    text-align: center;
+}
+
+.auth-footer-prompt a {
+    color: #2E86DE;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Error message */
+.auth-error-msg {
+    background: #FFEAEA;
+    color: #D63031;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    display: none;
+    text-align: left;
+    border-left: 3px solid #D63031;
+}
+
+/* Demo Credentials Hint Chip */
+.demo-credential-chip {
+    background: #EBF5FF;
+    border: 1px dashed #74B9FF;
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin-bottom: 16px;
+    font-size: 11px;
+    color: #1A5CA4;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: background 0.15s;
+}
+
+.demo-credential-chip:hover {
+    background: #D9ECFF;
+}
+
+/* Auth Options Row (Remember me + Forgot password) */
+.auth-options-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 12px;
+}
+
+.auth-forgot-link {
+    color: #2E86DE;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.auth-forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* Page 3 Auth Tabs (Log In / Sign Up Switcher) */
+.auth-tabs {
+    display: flex;
+    background: #F0F4F8;
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 20px;
+    gap: 4px;
+}
+
+.auth-tab-btn {
+    flex: 1;
+    padding: 10px 14px;
+    border: none;
+    background: none;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #636E72;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.auth-tab-btn:hover {
+    color: #1A1A2E;
+}
+
+.auth-tab-btn.active {
+    background: #FFFFFF;
+    color: #1A1A2E;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.auth-tab-content {
+    animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Page 11: Climate Trends & Historical Insights ────────── */
+.timeframe-tabs {
+    display: flex;
+    background: #F0F4F8;
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 16px;
+    gap: 4px;
+}
+
+.timeframe-tab-btn {
+    flex: 1;
+    padding: 9px 12px;
+    border: none;
+    background: none;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #636E72;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.timeframe-tab-btn:hover {
+    color: #1A1A2E;
+}
+
+.timeframe-tab-btn.active {
+    background: #FFFFFF;
+    color: #2E86DE;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.climate-stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.climate-stat-card {
+    background: #F8FBFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.climate-stat-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748B;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.climate-stat-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1E293B;
+}
+
+.climate-stat-sub {
+    font-size: 11px;
+    color: #94A3B8;
+}
+
+/* ── Responsive: full-width on small screens ─────────────── */
+@media (max-width: 480px) {
+    .app-container {
+        max-width: 100%;
+    }
+
+    .bottom-nav {
+        max-width: 100%;
+    }
+
+    .chat-input-bar {
+        max-width: 100%;
+    }
+}
+
+/* ============================================================
+   PAGE 15 — DASHBOARD  (all selectors prefixed .dashboard-)
+   Scoped styles only — no existing selectors overridden.
+   ============================================================ */
+
+/* ── Dashboard screen layout ─────────────────────────────── */
+#screen-dashboard {
+    background: #F0F4FF;
+    min-height: 100vh;
+}
+
+/* ── Dashboard Header ────────────────────────────────────── */
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px 12px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #EEF2F8;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.dashboard-header-brand {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1;
+}
+
+.dashboard-header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dashboard-refresh-btn {
+    background: #F0F4FF;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+    flex-shrink: 0;
+}
+
+.dashboard-refresh-btn:hover {
+    background: #DDE6FB;
+}
+
+/* ── Dashboard greeting / location row ───────────────────── */
+.dashboard-greeting-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 18px 16px 4px;
+}
+
+.dashboard-greeting {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1A1A2E;
+    line-height: 1.2;
+}
+
+.dashboard-location {
+    font-size: 13px;
+    color: #636E72;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ── Dashboard Weather Card ──────────────────────────────── */
+.dashboard-weather-card {
+    background: linear-gradient(135deg, #1B64DA 0%, #2E86DE 55%, #74B9FF 100%);
+    border-radius: 20px;
+    padding: 24px 20px 20px;
+    color: white;
+    margin: 12px 16px 0;
+    box-shadow: 0 6px 24px rgba(46, 134, 222, 0.35);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle radial shine on the card */
+.dashboard-weather-card::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.dashboard-weather-main {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.dashboard-weather-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dashboard-temperature {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.dashboard-condition-label {
+    font-size: 16px;
+    opacity: 0.92;
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+.dashboard-feels-like {
+    font-size: 12px;
+    opacity: 0.75;
+    margin-top: 2px;
+}
+
+.dashboard-weather-icon {
+    font-size: 68px;
+    line-height: 1;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    flex-shrink: 0;
+}
+
+/* Details row inside weather card */
+.dashboard-weather-details {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    background: rgba(255,255,255,0.14);
+    border-radius: 14px;
+    padding: 10px 4px;
+}
+
+.dashboard-detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 0 4px;
+    border-right: 1px solid rgba(255,255,255,0.2);
+}
+
+.dashboard-detail-item:last-child {
+    border-right: none;
+}
+
+.dashboard-detail-icon {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.dashboard-detail-value {
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    white-space: nowrap;
+}
+
+.dashboard-detail-label {
+    font-size: 10px;
+    opacity: 0.75;
+    text-align: center;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+/* Sunrise / sunset row */
+.dashboard-sun-row {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.dashboard-sun-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.dashboard-sun-item span:first-child {
+    font-size: 18px;
+}
+
+.dashboard-sun-label {
+    font-size: 10px;
+    opacity: 0.7;
+    display: block;
+    line-height: 1;
+}
+
+.dashboard-sun-value {
+    font-size: 13px;
+    font-weight: 600;
+    display: block;
+    line-height: 1.3;
+}
+
+/* ── Section header with optional link ───────────────────── */
+.dashboard-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.dashboard-section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1A1A2E;
+}
+
+.dashboard-section-link {
+    font-size: 13px;
+    font-weight: 600;
+    color: #2E86DE;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+    text-decoration: none;
+}
+
+.dashboard-section-link:hover {
+    text-decoration: underline;
+}
+
+/* ── Advisory Card ───────────────────────────────────────── */
+.dashboard-advisory {
+    border-radius: 16px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.dashboard-advisory-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.dashboard-advisory-body {
+    flex: 1;
+}
+
+.dashboard-advisory-title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
+
+.dashboard-advisory-text {
+    font-size: 13px;
+    line-height: 1.5;
+    opacity: 0.85;
+}
+
+/* Advisory severity variants */
+.dashboard-advisory.advisory-clear {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    color: #14532D;
+}
+
+.dashboard-advisory.advisory-rain {
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    color: #1E3A5F;
+}
+
+.dashboard-advisory.advisory-umbrella {
+    background: #EFF6FF;
+    border: 1px solid #BAE6FD;
+    color: #0C4A6E;
+}
+
+.dashboard-advisory.advisory-heat {
+    background: #FFF7ED;
+    border: 1px solid #FED7AA;
+    color: #7C2D12;
+}
+
+.dashboard-advisory.advisory-wind {
+    background: #F5F3FF;
+    border: 1px solid #DDD6FE;
+    color: #3B0764;
+}
+
+.dashboard-advisory.advisory-neutral {
+    background: #F8FAFC;
+    border: 1px solid #CBD5E1;
+    color: #334155;
+}
+
+/* ── Forecast strip ──────────────────────────────────────── */
+.dashboard-forecast {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    /* Hide scrollbar on webkit but keep scroll */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.dashboard-forecast::-webkit-scrollbar {
+    display: none;
+}
+
+.dashboard-forecast-card {
+    flex-shrink: 0;
+    background: #F8FBFF;
+    border: 1px solid #E2EAF6;
+    border-radius: 14px;
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    min-width: 72px;
+    cursor: default;
+    transition: box-shadow 0.15s;
+}
+
+.dashboard-forecast-card:hover {
+    box-shadow: 0 2px 10px rgba(46,134,222,0.12);
+}
+
+.dashboard-forecast-date {
+    font-size: 11px;
+    font-weight: 600;
+    color: #636E72;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.dashboard-forecast-icon {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.dashboard-forecast-high {
+    font-size: 14px;
+    font-weight: 700;
+    color: #D63031;
+}
+
+.dashboard-forecast-low {
+    font-size: 12px;
+    font-weight: 500;
+    color: #74B9FF;
+}
+
+.dashboard-forecast-rain {
+    font-size: 10px;
+    color: #636E72;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+/* ── Quick Actions grid ──────────────────────────────────── */
+.dashboard-quick-actions {
+    /* wrapper — no extra styles needed, uses .card */
+}
+
+.dashboard-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.dashboard-action-btn {
+    background: #F0F4FF;
+    border: 1px solid #E2EAF6;
+    border-radius: 14px;
+    padding: 14px 8px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+    text-align: center;
+}
+
+.dashboard-action-btn:hover {
+    background: #DDE6FB;
+    box-shadow: 0 2px 8px rgba(46,134,222,0.12);
+}
+
+.dashboard-action-btn:active {
+    transform: scale(0.96);
+}
+
+.dashboard-action-icon {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.dashboard-action-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #1A1A2E;
+    line-height: 1.2;
+}
+
+/* ── Loading skeleton shimmer inside weather card ─────────── */
+.dashboard-skeleton-line {
+    height: 14px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.25);
+    animation: dashSkeleton 1.4s ease-in-out infinite;
+}
+
+@keyframes dashSkeleton {
+    0%, 100% { opacity: 0.5; }
+    50%       { opacity: 1;   }
+}
+
+/* ── Responsive tweaks ───────────────────────────────────── */
+@media (max-width: 360px) {
+    .dashboard-temperature {
+        font-size: 52px;
+    }
+
+    .dashboard-weather-icon {
+        font-size: 52px;
+    }
+
+    .dashboard-weather-details {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .dashboard-detail-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 8px;
+    }
+
+    .dashboard-detail-item:nth-child(2),
+    .dashboard-detail-item:last-child {
+        border-bottom: none;
+    }
+
+    .dashboard-actions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 481px) {
+    /* Tablet / desktop — stretch cards to comfortable max-width */
+    .dashboard-weather-card {
+        margin: 12px 20px 0;
+    }
+
+    .dashboard-actions-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ── Home Screen Profile Avatar ─────────────────────────── */
+.home-profile-avatar {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+    padding: 0;
+    box-sizing: border-box;
+    background: #2E86DE;
+    color: #FFFFFF;
+    letter-spacing: 0.5px;
+    transition: background 0.15s, transform 0.1s;
+    flex-shrink: 0;
+    font-family: inherit;
+}
+
+.home-profile-avatar:hover {
+    background: #1a6fc4;
+}
+
+.home-profile-avatar:active {
+    transform: scale(0.93);
+}
+
+/* ============================================================
+   PAGE 16 — PROFILE  (all selectors prefixed .profile-)
+   Scoped styles only — no existing selectors overridden.
+   ============================================================ */
+
+/* ── Profile avatar (large, header area) ────────────────── */
+.profile-avatar-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 20px 20px;
+    background: linear-gradient(135deg, #1B64DA 0%, #2E86DE 55%, #74B9FF 100%);
+    color: white;
+    text-align: center;
+}
+
+.profile-avatar-circle {
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+    min-height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    border: 3px solid rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.profile-display-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 4px;
+}
+
+.profile-display-email {
+    font-size: 13px;
+    opacity: 0.85;
+    color: white;
+}
+
+/* ── Section cards ───────────────────────────────────────── */
+.profile-section {
+    background: white;
+    border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    margin-bottom: 14px;
+}
+
+.profile-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #636E72;
+    margin-bottom: 14px;
+}
+
+/* ── Info rows ───────────────────────────────────────────── */
+.profile-info-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #F0F4F8;
+}
+
+.profile-info-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.profile-info-label {
+    font-size: 13px;
+    color: #636E72;
+    flex-shrink: 0;
+}
+
+.profile-info-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1A1A2E;
+    text-align: right;
+    word-break: break-word;
+    max-width: 60%;
+}
+
+/* ── Temperature unit toggle ─────────────────────────────── */
+.profile-unit-toggle {
+    display: flex;
+    gap: 6px;
+}
+
+.profile-unit-btn {
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1.5px solid #E0E8F0;
+    background: white;
+    font-size: 13px;
+    font-weight: 600;
+    color: #636E72;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+}
+
+.profile-unit-btn.active {
+    background: #2E86DE;
+    border-color: #2E86DE;
+    color: white;
+}
+
+/* ── Toggle switches ─────────────────────────────────────── */
+.profile-toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #F0F4F8;
+}
+
+.profile-toggle-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.profile-toggle-label {
+    font-size: 14px;
+    color: #1A1A2E;
+    font-weight: 500;
+}
+
+.profile-toggle {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.profile-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.profile-toggle-track {
+    position: absolute;
+    inset: 0;
+    background: #CBD5E1;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.profile-toggle input:checked + .profile-toggle-track {
+    background: #2E86DE;
+}
+
+.profile-toggle-track::after {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: white;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+}
+
+.profile-toggle input:checked + .profile-toggle-track::after {
+    transform: translateX(20px);
+}
+
+/* ── Quick access grid ───────────────────────────────────── */
+.profile-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.profile-quick-btn {
+    background: #F0F4FF;
+    border: 1px solid #E2EAF6;
+    border-radius: 14px;
+    padding: 14px 8px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s;
+    text-align: center;
+}
+
+.profile-quick-btn:hover {
+    background: #DDE6FB;
+}
+
+.profile-quick-icon {
+    font-size: 22px;
+    line-height: 1;
+}
+
+.profile-quick-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #1A1A2E;
+    line-height: 1.2;
+}
+
+/* ── About card ──────────────────────────────────────────── */
+.profile-about-name {
+    font-size: 17px;
+    font-weight: 800;
+    color: #1A1A2E;
+    margin-bottom: 2px;
+}
+
+.profile-about-tagline {
+    font-size: 12px;
+    color: #636E72;
+    margin-bottom: 10px;
+}
+
+.profile-about-quote {
+    font-size: 13px;
+    color: #4A5568;
+    line-height: 1.6;
+    font-style: italic;
+    border-left: 3px solid #74B9FF;
+    padding-left: 12px;
+    margin-bottom: 10px;
+}
+
+.profile-version-badge {
+    display: inline-block;
+    background: #EBF5FF;
+    color: #2E86DE;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 20px;
+}
+
+/* ── Logout button ───────────────────────────────────────── */
+.profile-logout-btn {
+    width: 100%;
+    padding: 14px;
+    background: white;
+    color: #D63031;
+    border: 1.5px solid #FECDD3;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    margin-bottom: 24px;
+}
+
+.profile-logout-btn:hover {
+    background: #FFF1F2;
+    border-color: #FCA5A5;
+}
